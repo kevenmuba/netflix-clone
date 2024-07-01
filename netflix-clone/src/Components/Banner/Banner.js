@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import './banner.css'
-import axios from "../../utils/axios";
+import  axios  from '../../utils/Axios.js'
 import requests from '../../utils/requests';
 
 function Banner() {
@@ -9,7 +9,8 @@ function Banner() {
       (async () => {
           try {
               const request = await axios.get(requests.fetchNetflixOriginals)
-              // console.log(request)
+               console.log(request)
+               //any api request put in the result object name
               setMovie(request.data.results[
                   Math.floor(Math.random() * request.data.results.length)
               ]);
@@ -18,6 +19,7 @@ function Banner() {
           }
       })()
   }, []);
+  
 
   function truncate(str, n) {
       return str?.length > n ? str.substr(0, n - 1) + '...' : str;
@@ -41,10 +43,12 @@ function Banner() {
             <button className="banner__button">My List</button>
         </div>
         <h1 className="banner__description">{truncate(movie?.overview, 150)}</h1>
+       
     </div>
     <div className="banner__fadeBottom" />
 </div>
   )
 }
+
 
 export default Banner
